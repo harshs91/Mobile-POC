@@ -1,7 +1,7 @@
 package com.mobile.poc.controller;
 
 import com.mobile.poc.entity.Mobile;
-import com.mobile.poc.service.MobileService;
+import com.mobile.poc.service.impl.MobileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

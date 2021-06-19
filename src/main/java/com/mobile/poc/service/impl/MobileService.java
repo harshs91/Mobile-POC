@@ -1,24 +1,25 @@
-package com.mobile.poc.service;
+package com.mobile.poc.service.impl;
 
 
 import com.mobile.poc.entity.Mobile;
 import com.mobile.poc.repo.MobileRepo;
+import com.mobile.poc.service.interfaces.IMobileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
-public class MobileService {
+public class MobileService implements IMobileService {
 
     @Autowired
     MobileRepo mobileRepo;
 
-    public Mobile addMobile(@RequestBody Mobile mobile){
+    public Mobile addMobile(Mobile mobile){
         return mobileRepo.save(mobile);
     }
 
-    public Mobile getMobile(@PathVariable("Id") int Id){
+    public Mobile getMobile(int Id){
         return mobileRepo.findById(Id).orElse(null);
     }
 
@@ -26,7 +27,7 @@ public class MobileService {
         return mobileRepo.findAll();
     }
 
-    public Mobile updateMobile(@RequestBody Mobile updatedMobile, @PathVariable("Id") int Id) {
+    public Mobile updateMobile(Mobile updatedMobile, int Id) {
         return mobileRepo.findById(Id).map(mobile -> {
             mobile.setBrandName(updatedMobile.getBrandName());
             mobile.setModelName(updatedMobile.getModelName());
