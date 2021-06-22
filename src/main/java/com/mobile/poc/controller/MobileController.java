@@ -35,7 +35,12 @@ public class MobileController {
     }
 
     @GetMapping(path="/brand/{brandName}")
-    public List<Mobile> getMobile(@PathVariable("brandName") String brandName){
+    public List<Mobile> getPhonesByBrand(@PathVariable("brandName") String brandName){
         return mobileService.getPhonesByBrand(brandName);
+    }
+
+    @PatchMapping(path="/{Id}")
+    public Mobile patchMobile(@RequestBody Mobile patchedMobile, @PathVariable("Id") int Id){
+        return mobileService.patchMobile(patchedMobile, Id);
     }
 }

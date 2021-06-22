@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,6 +48,22 @@ public class MobileService implements IMobileService {
          return mobileRepo.findAll()
                  .stream().filter(mobile -> mobile.getBrandName().equals(brandName))
                  .collect(Collectors.toList());
+    }
+
+    @Override
+    public Mobile patchMobile(Mobile patchedMobile, int Id){
+        return mobileRepo.findById(Id).map(mobile -> {
+            updateValue(mobile::setBrandName, patchedMobile.getBrandName());
+            updateValue(mobile::setModelName, patchedMobile.getModelName());
+            return mobileRepo.save(mobile);
+        }).get();
+    }
+
+    //Partial update helper method
+    private <T> void updateValue(Consumer<T> setterMethod, T value) {
+        if (value != null){
+            setterMethod.accept(value);
+        }
     }
 
 }

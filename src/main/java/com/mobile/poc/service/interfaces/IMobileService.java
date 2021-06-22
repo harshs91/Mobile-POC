@@ -10,4 +10,5 @@ public interface IMobileService {
     Iterable<Mobile> getAllMobiles();
     Mobile updateMobile(Mobile updatedMobile, int Id);
     List<Mobile> getPhonesByBrand(String brandName);
+    Mobile patchMobile(Mobile patchedMobile, int Id);
 }
