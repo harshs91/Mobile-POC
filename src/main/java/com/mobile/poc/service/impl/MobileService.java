@@ -16,6 +16,7 @@ public class MobileService implements IMobileService {
 
     @Autowired
     MobileRepo mobileRepo;
+
     @Override
     public Mobile addMobile(Mobile mobile){
         return mobileRepo.save(mobile);
