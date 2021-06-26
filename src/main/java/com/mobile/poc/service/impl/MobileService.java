@@ -2,6 +2,7 @@ package com.mobile.poc.service.impl;
 
 
 import com.mobile.poc.entity.Mobile;
+import com.mobile.poc.exception.model.MobileNotFoundException;
 import com.mobile.poc.repo.MobileRepo;
 import com.mobile.poc.service.interfaces.IMobileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,14 +62,13 @@ public class MobileService implements IMobileService {
         }).get();
     }
 
-    //Delete service with basic exception handling
     @Override
     public String deleteMobile(int Id){
         try {
             mobileRepo.deleteById(Id);
         }
         catch (EmptyResultDataAccessException e){
-            return "Entity with id "+Id+" does not exist!";
+            throw new MobileNotFoundException();
         }
         return "Mobile with "+Id+" deleted successfully.";
     }
