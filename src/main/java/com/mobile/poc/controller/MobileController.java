@@ -43,4 +43,9 @@ public class MobileController {
     public Mobile patchMobile(@RequestBody Mobile patchedMobile, @PathVariable("Id") int Id){
         return mobileService.patchMobile(patchedMobile, Id);
     }
+
+    @DeleteMapping(path="/{Id}")
+    public String deleteMobile(@PathVariable("Id") int Id){
+        return mobileService.deleteMobile(Id);
+    }
 }

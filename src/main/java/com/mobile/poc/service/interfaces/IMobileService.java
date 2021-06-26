@@ -11,4 +11,5 @@ public interface IMobileService {
     Mobile updateMobile(Mobile updatedMobile, int Id);
     List<Mobile> getPhonesByBrand(String brandName);
     Mobile patchMobile(Mobile patchedMobile, int Id);
+    String deleteMobile(int Id);
 }

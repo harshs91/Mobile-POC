@@ -5,6 +5,7 @@ import com.mobile.poc.entity.Mobile;
 import com.mobile.poc.repo.MobileRepo;
 import com.mobile.poc.service.interfaces.IMobileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,6 +59,18 @@ public class MobileService implements IMobileService {
             updateValue(mobile::setModelName, patchedMobile.getModelName());
             return mobileRepo.save(mobile);
         }).get();
+    }
+
+    //Delete service with basic exception handling
+    @Override
+    public String deleteMobile(int Id){
+        try {
+            mobileRepo.deleteById(Id);
+        }
+        catch (EmptyResultDataAccessException e){
+            return "Entity with id "+Id+" does not exist!";
+        }
+        return "Mobile with "+Id+" deleted successfully.";
     }
 
     //Partial update helper method
