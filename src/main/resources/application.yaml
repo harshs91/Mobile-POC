@@ -8,10 +8,6 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/testdb
     username: root
     password: thepassword
-  security:
-    user:
-      name: theuser
-      password: strong
 
 logging:
   level:
